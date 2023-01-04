@@ -1,3 +1,4 @@
+import kaboom from "https://unpkg.com/kaboom/dist/kaboom.js";
 kaboom({ global: true, debug: true, background: [255, 255, 255] })
 loadRoot("../assets/");
 let name_index = {
