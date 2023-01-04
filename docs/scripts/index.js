@@ -1,4 +1,4 @@
-import kaboom from "https://unpkg.com/kaboom/dist/kaboom.js";
+import kaboom from "https://unpkg.com/kaboom/dist/kaboom.mjs";
 kaboom({ global: true, debug: true, background: [255, 255, 255] })
 let url = "https://airman-dotcom.github.io/web-packet-tracer/assets/"
 loadRoot(url);
