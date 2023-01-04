@@ -1,0 +1,23 @@
+{
+  "name": "web-packet-tracer",
+  "version": "1.0.0",
+  "description": "Packet Tracer but on the Web",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airman-dotcom/web-packet-tracer.git"
+  },
+  "author": "Arman Akbari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airman-dotcom/web-packet-tracer/issues"
+  },
+  "homepage": "https://github.com/airman-dotcom/web-packet-tracer#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "kaboom": "^2000.2.10"
+  }
+}

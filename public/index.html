@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            overflow: hidden;
+        }
+        select, #network, #end, #connections {
+            position: absolute;
+        }
+        #network, #end, #connections {
+            display: none;
+            border: 2px solid black;
+            /*height: 25vh;
+            width: 15vw;*/
+            left: 123px;
+            background-color: white;
+            flex-direction: column;
+        }
+        #network img, #end img, #connections img {
+            border: 3px blue solid;
+            margin-top: 1vh;
+            border-radius: 15px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <select>
+        <option>Select Option</option>
+        <option>Network Devices</option>
+        <option>End Devices</option>
+        <option>Connections</option>
+    </select>
+    <div id="network">
+        
+    </div>
+    <div id="end"></div>
+    <div id="connections"></div>
+</body>
+<script src="https://unpkg.com/kaboom/dist/kaboom.js"></script>
+<script src="./scripts/index.js"></script>
+</html>
