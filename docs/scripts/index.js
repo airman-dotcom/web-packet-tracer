@@ -1,6 +1,6 @@
 import kaboom from "https://unpkg.com/kaboom/dist/kaboom.js";
 kaboom({ global: true, debug: true, background: [255, 255, 255] })
-loadRoot("https://airman-dotcom.github.io/assets/");
+loadRoot("https://airman-dotcom.github.io/web-packet-tracer/assets/");
 let name_index = {
     ethernetpc: "EthernetPC",
     wirelesspc: "WirelessPC",
