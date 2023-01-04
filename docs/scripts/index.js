@@ -1,6 +1,7 @@
 import kaboom from "https://unpkg.com/kaboom/dist/kaboom.js";
 kaboom({ global: true, debug: true, background: [255, 255, 255] })
-loadRoot("https://airman-dotcom.github.io/web-packet-tracer/assets/");
+let url = "https://airman-dotcom.github.io/web-packet-tracer/assets/"
+loadRoot(url);
 let name_index = {
     ethernetpc: "EthernetPC",
     wirelesspc: "WirelessPC",
@@ -24,6 +25,9 @@ let name_index = {
     homerouter: "HomeRouter",
     celltower: "CellTower"
 }
+Object.keys(name_index).forEach(element => {
+    eval(`loadSprite("${name_index[element]}", "${element}.png")`)
+})
 /*onDraw(() => {
 drawRect({
 
@@ -75,7 +79,7 @@ let end_devices = ["ethernetpc", "wirelesspc", "server", "ethernetlaptop", "wire
 let connections = ["console", "straight-through", "cross-over", "fiberoptic", "phonecable", "coaxial", "serial", "octal", "usb"];
 network_devices.forEach(element => {
     let img = document.createElement("img");
-    img.src = `../assets/${element}.png`;
+    img.src = `${url + element}.png`;
     img.width = 50;
     img.id = element;
     img.title = element;
@@ -84,7 +88,7 @@ network_devices.forEach(element => {
 
 end_devices.forEach(element => {
     let img = document.createElement("img");
-    img.src = `../assets/${element}.png`;
+    img.src = `${url + element}.png`;
     img.width = 50;
     img.id = element;
     img.title = element;
@@ -93,7 +97,7 @@ end_devices.forEach(element => {
 
 connections.forEach(element => {
     let img = document.createElement("img");
-    img.src = `../assets/${element}.png`;
+    img.src = `${url + element}.png`;
     img.title = element;
     img.id = element;
     img.width = 50;
@@ -142,9 +146,7 @@ select.addEventListener("change", (e) => {
         enddiv.style.display = "none";
     }
 })
-Object.keys(name_index).forEach(element => {
-    eval(`loadSprite("${name_index[element]}", "${element}.png")`)
-})
+
 let follow, follow_s;
 function create_node(name, type) {
     let x = add([
