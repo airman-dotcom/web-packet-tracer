@@ -105,19 +105,19 @@ connections.forEach(element => {
 })
 
 function clickEvent(e) {
-    let another = document.querySelector("img[src='../assets/using.png']")
+    let another = document.querySelector("img[src='https://airman-dotcom.github.io/web-packet-tracer/assets/using.png']")
 
     let thing = document.getElementById(e.target.id);
     if (another != null && another != thing) {
-        another.src = `../assets/${another.id}.png`;
+        another.src = `https://airman-dotcom.github.io/web-packet-tracer/assets/${another.id}.png`;
         if (connections.includes(another.id)) connections_clicked = [false, null];
     }
     if (!thing.src.includes("using.png")) {
         if (connections.includes(thing.id)) connections_clicked[1] = thing.id;
-        thing.src = "../assets/using.png";
+        thing.src = url + "using.png";
         follow = thing.id;
     } else {
-        thing.src = `../assets/${thing.id}.png`;
+        thing.src = url + `${thing.id}.png`;
         connections_clicked = [false, null];
         follow = undefined;
     }
@@ -171,7 +171,7 @@ function create_node(name, type) {
 
 onMousePress(() => {
     let name = "";
-    let another = document.querySelector("img[src='../assets/using.png']")
+    let another = document.querySelector("img[src='https://airman-doctom.github.io/web-/assets/using.png']")
     if (another && Object.keys(name_index).indexOf(follow) != -1) {
         if (names[Object.keys(name_index).indexOf(follow)].length == 0) {
             name = name_index[follow] + "-0";
@@ -181,7 +181,7 @@ onMousePress(() => {
         names[Object.keys(name_index).indexOf(follow)].push(name);
         console.log(names)
         create_node(name, name_index[follow])
-        another.src = `../assets/${another.id}.png`;
+        another.src = url + `${another.id}.png`;
         return;
     }
 })
