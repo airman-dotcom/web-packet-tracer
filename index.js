@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
-app.use(express.static("public"));
+app.use(express.static("docs"));
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + "/public/index.html")
+    res.setHeader("Content-Type", "text/javascript")
+    res.sendFile(__dirname + "/docs/index.html")
 })
 
 app.listen(3000, "localhost", () => {

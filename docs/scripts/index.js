@@ -1,4 +1,3 @@
-import kaboom from "https://unpkg.com/kaboom/dist/kaboom.mjs";
 kaboom({ global: true, debug: true, background: [255, 255, 255] })
 let url = "https://airman-dotcom.github.io/web-packet-tracer/assets/"
 loadRoot(url);
@@ -72,7 +71,7 @@ let condiv = document.getElementById("connections");
 let select = document.querySelector("select");
 let objects = [];
 let connections_clicked = [false, null];
-let hovering_over_tile = false;
+let hovering_over_tile, contin, cont2 = false
 let tile_follow = [false, null, null];
 let network_devices = ["accesspoint", "router", "switch", "bridge", "hub", "cablemodem", "dslmodem", "wirelesslancontroller", "homerouter", "celltower"];
 let end_devices = ["ethernetpc", "wirelesspc", "server", "ethernetlaptop", "wirelesslaptop", "smartphone", "tablet", "printer", "phone", "ipphone", "tv"]
@@ -106,7 +105,7 @@ connections.forEach(element => {
 
 function clickEvent(e) {
     let another = document.querySelector("img[src='https://airman-dotcom.github.io/web-packet-tracer/assets/using.png']")
-
+    if (cont2) contin = true;
     let thing = document.getElementById(e.target.id);
     if (another != null && another != thing) {
         another.src = `https://airman-dotcom.github.io/web-packet-tracer/assets/${another.id}.png`;
@@ -126,6 +125,10 @@ function clickEvent(e) {
 document.querySelectorAll("div img").forEach(element => {
     element.addEventListener("click", clickEvent)
 })
+
+document.body.onkeydown = function(e){
+    if (e.key == "Control") cont2 = true;
+}
 
 select.addEventListener("change", (e) => {
     if (select.value == "Network Devices") {
@@ -158,7 +161,7 @@ function create_node(name, type) {
         name,
         
     ])
-    objects.push({ name: name, otype: "tile", ttype: type, ports: port_index.type, object: x})
+    objects.push({ name: name, otype: "tile", ttype: type, ports: port_index[type], object: x})
     add([
         text(name, { size: 15, font: "apl386" }),
         color(0, 0, 0),
@@ -171,7 +174,8 @@ function create_node(name, type) {
 
 onMousePress(() => {
     let name = "";
-    let another = document.querySelector("img[src='https://airman-doctom.github.io/web-/assets/using.png']")
+    let another = document.querySelector("img[src='https://airman-dotcom.github.io/web-packet-tracer/assets/using.png']")
+    console.log(another)
     if (another && Object.keys(name_index).indexOf(follow) != -1) {
         if (names[Object.keys(name_index).indexOf(follow)].length == 0) {
             name = name_index[follow] + "-0";
@@ -181,7 +185,7 @@ onMousePress(() => {
         names[Object.keys(name_index).indexOf(follow)].push(name);
         console.log(names)
         create_node(name, name_index[follow])
-        another.src = url + `${another.id}.png`;
+        if (!contin) another.src = url + `${another.id}.png`;
         return;
     }
 })
@@ -200,14 +204,13 @@ onUpdate("name", (n) => {
 
 onUpdate(() => {
     if (connections_clicked[0]) {
-        let ports;
+        let p;
         let t = connections_clicked[2];
         for(let x = 0; x<objects.length;x++){
-            if (x.object == t){
-                ports = x.ports
+            if (objects[x].object == t){
+                p = objects[x].ports
             }
         }
-        console.log(ports)
         /*drawRect({
 
             width: 120,
@@ -219,15 +222,16 @@ onUpdate(() => {
         
         add([
             pos(t.pos.x, t.pos.y),
-            rect(120, 180),
+            rect(160, 180),
             outline(4),
             area(),
             "conn",
         ])
         let a = t.pos.y;
-        ports.forEach(e => {
+        p.forEach(e => {
+            let x = e.length * 12.3076923077;
             add([
-                text("", {font: "apl386", size:20, width: 120}),
+                text(e, {font: "apl386", size:20, width: x}),
                 pos(t.pos.x, a),
                 color(0,0,0),
                 area(),
@@ -236,6 +240,7 @@ onUpdate(() => {
             ])
             a += 20;
         })
+        connections_clicked = [false, null]
         /*drawText({
             text: "oh hi",
             size: 20,
@@ -248,8 +253,12 @@ onUpdate(() => {
     }
 })
 
-onMousePress("connection", (con) => {
-    console.log(con.text)
+onClick("connection", (con) => {
+    alert()
+})
+
+onHover("connection", (con) => {
+    con.use(color(0, 255,0))
 })
 
 
